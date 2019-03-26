@@ -1,0 +1,32 @@
+<nodeDefs>
+  <nodeDef id="weather" nodeType="139" nls="ctl">
+    <editors />
+    <sts>
+      <st id="ST" editor="bool" />
+      <st id="CLITEMP" editor="TEMP_F" />
+      <st id="CLIHUM" editor="PERCENT" />
+      <st id="BARPRES" editor="HPA" />
+      <st id="WINDDIR" editor="DEGREES" />
+      <st id="DEWPT" editor="TEMP_F" />
+      <st id="GV0" editor="TEMP_F" />
+      <st id="GV1" editor="TEMP_F" />
+      <st id="GV4" editor="MPH" />
+      <st id="GV6" editor="MM" />
+      <st id="GV11" editor="COVERAGE" />
+      <st id="GV12" editor="INTENSITY" />
+      <st id="GV13" editor="CONDITIONS" />
+      <st id="GV14" editor="PERCENT" />
+      <st id="GV15" editor="METERS" />
+      <st id="GV16" editor="UV" />
+    </sts>
+    <cmds>
+      <sends />
+      <accepts>
+        <cmd id="DISCOVER" />
+        <cmd id="REMOVE_NOTICES_ALL" />
+        <cmd id="UPDATE_PROFILE" />
+      </accepts>
+    </cmds>
+  </nodeDef>
+
+</nodeDefs>

@@ -1,0 +1,60 @@
+<editors>
+    <editor id="bool">
+        <range uom="2" subset="0,1" />
+    </editor>
+    <editor id="int">
+        <range uom="56" min="0" max="150" step="1" prec="1" />
+    </editor>
+    <editor id="TEMP_F">
+        <range uom="17" min="-50" max="150" step="1" prec="1" />
+    </editor>
+    <editor id="PRECENT">
+        <range uom="22" min="0" max="100" prec="0" />
+    </editor>
+    <editor id="PRESSURE">
+        <range uom="23" min="0" max="100" prec="3" />
+    </editor>
+    <editor id="LUMIN">
+        <range uom="36" min="0" max="200000" prec="0" />
+    </editor>
+    <editor id="MPH">
+        <range uom="48" min="0" max="500" prec="0" />
+    </editor>
+    <editor id="MPS">
+        <range uom="49" min="0" max="500" prec="0" />
+    </editor>
+    <editor id="DEGREES">
+        <range uom="76" min="0" max="360" prec="0" />
+    </editor>
+    <editor id="INCHES">
+        <range uom="105" min="0" max="20000" prec="3" />
+    </editor>
+    <editor id="inhr">
+        <range uom="24" min="0" max="2000" prec="3" />
+    </editor>
+    <editor id="METERS">
+        <range uom="38" min="0" max="200000" prec="0" />
+    </editor>
+    <editor id="COVERAGE">
+        <range uom="27" min="0" max="200000" prec="0" />
+    </editor>
+    <editor id="CONDITIONS">
+        <range uom="25" subset="200,804" nls="EN_CCCONDITION" />
+    </editor>
+    <editor id="INTENSITY">
+        <range uom="70" min="0" max="100" prec="0" />
+    </editor>
+    <editor id="INHG">
+        <range uom="23" min="0" max="100" prec="0" />
+    </editor>
+    <editor id="MB">
+        <range uom="117" min="1000" max="2000" prec="0" />
+    </editor>
+    <editor id="HPA">
+        <range uom="118" min="1000" max="2000" prec="0" />
+    </editor>
+    <editor id="UV">
+        <range uom="71" min="0" max="15" prec="1" />
+    </editor>
+
+</editors>
