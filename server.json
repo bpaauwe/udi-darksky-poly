@@ -9,7 +9,7 @@
     "notice": "For testing purposes only",
     "shortPoll": "60",
     "longPoll": "600",
-    "profile_version": "1.0.0",
+    "profile_version": "1.0.1",
     "credits": [ {
 	"title": "DarkSky: A node server for weather data",
     	"author": "Bob Paauwe",

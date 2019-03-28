@@ -35,6 +35,9 @@ uom = {
         118 : 'HPA',
         23 : 'INHG',
         71 : 'UV',
+        116 : 'MILES',
+        46 : 'mmhr',
+        24 : 'inhr',
         }
 
 
@@ -60,7 +63,7 @@ def write_profile(logger, drivers):
     nodedef = open("profile/nodedef/nodedef.xml", "w")
     nodedef.write("<nodeDefs>\n")
 
-    nodedef.write(NODEDEF_TMPL % ('weather', 'ctl'))
+    nodedef.write(NODEDEF_TMPL % ('dsweather', 'dsk'))
     nodedef.write("    <editors />\n")
     nodedef.write("    <sts>\n")
     for d in drivers:

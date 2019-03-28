@@ -7,7 +7,7 @@ import polyinterface
 import sys
 import time
 import datetime
-import urllib3
+import requests
 import socket
 import math
 import json
@@ -16,17 +16,17 @@ import write_profile
 LOGGER = polyinterface.LOGGER
 
 class Controller(polyinterface.Controller):
-    id = 'weather'
+    id = 'dsweather'
     #id = 'controller'
     hint = [0,0,0,0]
     def __init__(self, polyglot):
         super(Controller, self).__init__(polyglot)
-        self.name = 'DarkSkey'
+        self.name = 'DarkSky'
         self.address = 'weather'
         self.primary = self.address
         self.location = ''
         self.apikey = ''
-        self.units = 'metric'
+        self.units = 'us'
         self.configured = False
         self.myConfig = {}
 
@@ -70,11 +70,22 @@ class Controller(polyinterface.Controller):
         # TODO: Discovery
         LOGGER.info('Node server started')
 
-    def longPoll(self):
-        self.query_forecast()
-
     def shortPoll(self):
         self.query_conditions()
+
+    def icon_2_int(self, icn):
+        return {
+                'clear-day': 0,
+                'clear-night': 1,
+                'rain': 2,
+                'snow': 3,
+                'sleet': 4,
+                'wind': 5,
+                'fog': 6,
+                'cloudy': 7,
+                'partly-cloudy-day': 8,
+                'partly-cloudy-night': 9,
+                }.get(icn, 0)
 
     def query_conditions(self):
         # Query for the current conditions. We can do this fairly
@@ -84,8 +95,8 @@ class Controller(polyinterface.Controller):
 
         request = 'https://api.darksky.net/forecast/'
         # TODO: handle other methods of setting location
-        request += '&appid=' + self.apikey + '/'
-        request += 'location=' + self.location
+        request += self.apikey + '/'
+        request += self.location
 
         # units= 'auto' 'ca' 'si' 'us' 'uk2'
         #request += '?units=' + self.units
@@ -96,52 +107,57 @@ class Controller(polyinterface.Controller):
             LOGGER.info('Skipping connection because we aren\'t configured yet.')
             return
 
-        http = urllib3.PoolManager()
-        c = http.request('GET', request)
-        wdata = c.data
-        jdata = json.loads(wdata.decode('utf-8'))
-        c.close()
+        c = requests.get(request)
+        jdata = c.json()
 
-        http.clear()
+        #http = urllib3.PoolManager()
+        #c = http.request('GET', request)
+        #wdata = c.data
+        #jdata = json.loads(wdata.decode('utf-8'))
+        #c.close()
 
-        LOGGER.debug(jdata)
+        #http.clear()
+
+        #LOGGER.debug(jdata)
+        LOGGER.debug(jdata['currently'])
 
         # Assume we always get the main section with data
         # TODO: Convert icon to number that maps to condition string
         #       in NLS
         #  values: 'clear-day' 'clear-night' 'rain' 'snow' 'sleet' 'wind'
         #          'fog' 'cloudy' 'partly-cloudy-day' 'partly cloudy-night'
-        #self.setDriver('GV13', jdata['currently']['icon'],
-        #        report=True, force=True)
-
+        self.setDriver('GV13', self.icon_2_int(jdata['currently']['icon']),
+                report=True, force=True)
         self.setDriver('CLITEMP', float(jdata['currently']['temperature']),
                 report=True, force=True)
-        self.setDriver('CLIHUM', float(jdata['currently']['humidity']),
+        self.setDriver('CLIHUM', float(jdata['currently']['humidity']) * 100,
                 report=True, force=True)
         self.setDriver('BARPRES', float(jdata['currently']['pressure']),
                 report=True, force=True)
         self.setDriver('GV4', float(jdata['currently']['windSpeed']),
                 report=True, force=True)
+        self.setDriver('GV5', float(jdata['currently']['windGust']),
+                report=True, force=True)
         self.setDriver('WINDDIR', float(jdata['currently']['windBearing']),
                 report=True, force=True)
         self.setDriver('GV15', float(jdata['currently']['visibility']),
                 report=True, force=True)
-        self.setDriver('GV14', float(jdata['currently']['cloudCover']),
+        self.setDriver('GV14', float(jdata['currently']['cloudCover'] * 100),
                 report=True, force=True)
         self.setDriver('GV16', float(jdata['currently']['uvIndex']), True, True)
         self.setDriver('GV0', float(jdata['currently']['apparentTemperature']),
                 report=True, force=True)
         self.setDriver('DEWPT', float(jdata['currently']['dewPoint']),
                 report=True, force=True)
+        self.setDriver('GV6', float(jdata['currently']['precipIntensity']),
+                report=True, force=True)
+        self.setDriver('GV17', float(jdata['currently']['ozone']), True, True)
 
         # other data
         # nearestStormDistance
-        # precipIntensity
         # precipIntensityError
         # precipProbability
         # precipType
-        # windGust
-        # ozone
         
     def query(self):
         for node in self.nodes:
@@ -194,12 +210,14 @@ class Controller(polyinterface.Controller):
 
     def set_driver_units(self):
         LOGGER.info('Configure drivers ---')
-        if self.units == 'metric':
+        if self.units == 'si':
             for driver in self.drivers:
                 if driver['driver'] == 'CLITEMP':
                     driver['uom'] = 4
                 if driver['driver'] == 'DEWPT':
                     driver['uom'] = 4
+                if driver['driver'] == 'BARPRES':
+                    driver['uom'] = 118
                 if driver['driver'] == 'GV0':
                     driver['uom'] = 4
                 if driver['driver'] == 'GV1':
@@ -212,12 +230,20 @@ class Controller(polyinterface.Controller):
                     driver['uom'] = 49
                 if driver['driver'] == 'GV5':
                     driver['uom'] = 49
+                if driver['driver'] == 'RAINRT':
+                    driver['uom'] = 46
+                if driver['driver'] == 'GV15':
+                    driver['uom'] = 38
+
+        # Write out a new node definition file here.
         else:  # imperial
             for driver in self.drivers:
                 if driver['driver'] == 'CLITEMP':
                     driver['uom'] = 17
                 if driver['driver'] == 'DEWPT':
                     driver['uom'] = 17
+                if driver['driver'] == 'BARPRES':
+                    driver['uom'] = 117
                 if driver['driver'] == 'GV0':
                     driver['uom'] = 17
                 if driver['driver'] == 'GV1':
@@ -230,6 +256,10 @@ class Controller(polyinterface.Controller):
                     driver['uom'] = 48
                 if driver['driver'] == 'GV5':
                     driver['uom'] = 48
+                if driver['driver'] == 'RAINRT':
+                    driver['uom'] = 24
+                if driver['driver'] == 'GV15':
+                    driver['uom'] = 116
 
         # Write out a new node definition file here.
         write_profile.write_profile(LOGGER, self.drivers)
@@ -255,19 +285,18 @@ class Controller(polyinterface.Controller):
             {'driver': 'ST', 'value': 1, 'uom': 2},   # node server status
             {'driver': 'CLITEMP', 'value': 0, 'uom': 4},   # temperature
             {'driver': 'CLIHUM', 'value': 0, 'uom': 22},   # humidity
-            {'driver': 'BARPRES', 'value': 0, 'uom': 118}, # pressure
+            {'driver': 'BARPRES', 'value': 0, 'uom': 117}, # pressure
             {'driver': 'WINDDIR', 'value': 0, 'uom': 76},  # direction
             {'driver': 'DEWPT', 'value': 0, 'uom': 4},     # dewpoint
             {'driver': 'GV0', 'value': 0, 'uom': 4},       # apparent temp
-            {'driver': 'GV1', 'value': 0, 'uom': 4},       # min temp
             {'driver': 'GV4', 'value': 0, 'uom': 49},      # wind speed
-            {'driver': 'GV6', 'value': 0, 'uom': 82},      # rain
-            {'driver': 'GV11', 'value': 0, 'uom': 27},     # climate coverage
-            {'driver': 'GV12', 'value': 0, 'uom': 70},     # climate intensity
+            {'driver': 'GV5', 'value': 0, 'uom': 49},      # wind gust
+            {'driver': 'RAINRT', 'value': 0, 'uom': 24},   # rain
             {'driver': 'GV13', 'value': 0, 'uom': 25},     # climate conditions
             {'driver': 'GV14', 'value': 0, 'uom': 22},     # cloud conditions
-            {'driver': 'GV15', 'value': 0, 'uom': 38},     # visibility
+            {'driver': 'GV15', 'value': 0, 'uom': 116},    # visibility
             {'driver': 'GV16', 'value': 0, 'uom': 71},     # UV index
+            {'driver': 'GV17', 'value': 0, 'uom': 56},     # Ozone
             ]
 
 
