@@ -38,6 +38,12 @@ uom = {
         116 : 'MILES',
         46 : 'mmhr',
         24 : 'inhr',
+        9 : 'DAY',
+        }
+
+index_editor = {
+        'GV19' : 'DAY',
+        'GV13' : 'CONDITIONS',
         }
 
 
@@ -46,7 +52,7 @@ uom = {
 # We're assuming that we're just creating the definition for the controller
 # node and that to do that, we just iterate through the driver list to
 # build the status section of the node definition.
-def write_profile(logger, drivers):
+def write_profile(logger, drivers, daily_drivers):
     sd = get_server_data(logger)
     if sd is False:
         logger.error("Unable to complete without server data...")
@@ -67,7 +73,10 @@ def write_profile(logger, drivers):
     nodedef.write("    <editors />\n")
     nodedef.write("    <sts>\n")
     for d in drivers:
-        nodedef.write(STATUS_TMPL % (d['driver'], uom[d['uom']]))
+        if d['uom'] == 25:
+            nodedef.write(STATUS_TMPL % (d['driver'], index_editor[d['driver']]))
+        else:
+            nodedef.write(STATUS_TMPL % (d['driver'], uom[d['uom']]))
     nodedef.write("    </sts>\n")
     nodedef.write("    <cmds>\n")
     nodedef.write("      <sends />\n")
@@ -78,6 +87,24 @@ def write_profile(logger, drivers):
     nodedef.write("      </accepts>\n")
     nodedef.write("    </cmds>\n")
     nodedef.write("  </nodeDef>\n\n")
+
+    # Daily Forecast Node
+    nodedef.write(NODEDEF_TMPL % ('daily', 'dsk'))
+    nodedef.write("    <editors />\n")
+    nodedef.write("    <sts>\n")
+    for d in daily_drivers:
+        if d['uom'] == 25:
+            nodedef.write(STATUS_TMPL % (d['driver'], index_editor[d['driver']]))
+        else:
+            nodedef.write(STATUS_TMPL % (d['driver'], uom[d['uom']]))
+    nodedef.write("    </sts>\n")
+    nodedef.write("    <cmds>\n")
+    nodedef.write("      <sends />\n")
+    nodedef.write("      <accepts>\n")
+    nodedef.write("      </accepts>\n")
+    nodedef.write("    </cmds>\n")
+    nodedef.write("  </nodeDef>\n\n")
+
     nodedef.write("</nodeDefs>")
 
     nodedef.close()

@@ -11,6 +11,7 @@ import requests
 import socket
 import math
 import json
+import darksky_daily
 import write_profile
 
 LOGGER = polyinterface.LOGGER
@@ -66,9 +67,22 @@ class Controller(polyinterface.Controller):
 
     def start(self):
         LOGGER.info('Starting node server')
+        LOGGER.info('Add node for forecast')
+        for day in range(1,8):
+            address = 'forecast_' + str(day)
+            title = 'Forcast ' + str(day)
+
+            try:
+                node = darksky_daily.DailyNode(self, self.address, address, title)
+                self.addNode(node);
+            except:
+                LOGGER.error('Failed to create forecast node' + title)
+
         self.check_params()
-        # TODO: Discovery
         LOGGER.info('Node server started')
+
+        # Do an initial query to get the data filled in as soon as possible
+        self.query_conditions()
 
     def shortPoll(self):
         self.query_conditions()
@@ -109,17 +123,12 @@ class Controller(polyinterface.Controller):
 
         c = requests.get(request)
         jdata = c.json()
-
-        #http = urllib3.PoolManager()
-        #c = http.request('GET', request)
-        #wdata = c.data
-        #jdata = json.loads(wdata.decode('utf-8'))
-        #c.close()
-
-        #http.clear()
-
         #LOGGER.debug(jdata)
-        LOGGER.debug(jdata['currently'])
+        #LOGGER.debug(jdata['currently'])
+
+        for key in jdata:
+            LOGGER.debug('found key: ' + key)
+            #LOGGER.debug(jdata[key])
 
         # Assume we always get the main section with data
         # TODO: Convert icon to number that maps to condition string
@@ -158,6 +167,11 @@ class Controller(polyinterface.Controller):
         # precipIntensityError
         # precipProbability
         # precipType
+
+        # Daily data is 7 day forecast, index 0 is today
+        for day in range(1,8):
+            address = 'forecast_' + str(day)
+            self.nodes[address].update_forecast(jdata['daily']['data'][day])
         
     def query(self):
         for node in self.nodes:
@@ -234,6 +248,9 @@ class Controller(polyinterface.Controller):
                     driver['uom'] = 46
                 if driver['driver'] == 'GV15':
                     driver['uom'] = 38
+            for day in range(1,8):
+                address = 'forecast_' + str(day)
+                self.nodes[address].set_units('si')
 
         # Write out a new node definition file here.
         else:  # imperial
@@ -260,9 +277,13 @@ class Controller(polyinterface.Controller):
                     driver['uom'] = 24
                 if driver['driver'] == 'GV15':
                     driver['uom'] = 116
+            for day in range(1,8):
+                address = 'forecast_' + str(day)
+                self.nodes[address].set_units('us')
 
         # Write out a new node definition file here.
-        write_profile.write_profile(LOGGER, self.drivers)
+        LOGGER.info('Write new node definitions and publish to ISY')
+        write_profile.write_profile(LOGGER, self.drivers, self.nodes['forecast_1'].drivers)
         self.poly.installprofile()
 
     def remove_notices_all(self, command):
@@ -284,17 +305,18 @@ class Controller(polyinterface.Controller):
     drivers = [
             {'driver': 'ST', 'value': 1, 'uom': 2},   # node server status
             {'driver': 'CLITEMP', 'value': 0, 'uom': 4},   # temperature
-            {'driver': 'CLIHUM', 'value': 0, 'uom': 22},   # humidity
-            {'driver': 'BARPRES', 'value': 0, 'uom': 117}, # pressure
-            {'driver': 'WINDDIR', 'value': 0, 'uom': 76},  # direction
-            {'driver': 'DEWPT', 'value': 0, 'uom': 4},     # dewpoint
             {'driver': 'GV0', 'value': 0, 'uom': 4},       # apparent temp
+            {'driver': 'CLIHUM', 'value': 0, 'uom': 22},   # humidity
+            {'driver': 'DEWPT', 'value': 0, 'uom': 4},     # dewpoint
+            {'driver': 'BARPRES', 'value': 0, 'uom': 117}, # pressure
             {'driver': 'GV4', 'value': 0, 'uom': 49},      # wind speed
+            {'driver': 'WINDDIR', 'value': 0, 'uom': 76},  # direction
             {'driver': 'GV5', 'value': 0, 'uom': 49},      # wind gust
-            {'driver': 'RAINRT', 'value': 0, 'uom': 24},   # rain
             {'driver': 'GV13', 'value': 0, 'uom': 25},     # climate conditions
             {'driver': 'GV14', 'value': 0, 'uom': 22},     # cloud conditions
             {'driver': 'GV15', 'value': 0, 'uom': 116},    # visibility
+            {'driver': 'GV18', 'value': 0, 'uom': 22},     # chance
+            {'driver': 'RAINRT', 'value': 0, 'uom': 24},   # rain
             {'driver': 'GV16', 'value': 0, 'uom': 71},     # UV index
             {'driver': 'GV17', 'value': 0, 'uom': 56},     # Ozone
             ]

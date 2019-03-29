@@ -4,17 +4,18 @@
     <sts>
       <st id="ST" editor="bool" />
       <st id="CLITEMP" editor="TEMP_F" />
-      <st id="CLIHUM" editor="PERCENT" />
-      <st id="BARPRES" editor="MB" />
-      <st id="WINDDIR" editor="DEGREES" />
-      <st id="DEWPT" editor="TEMP_F" />
       <st id="GV0" editor="TEMP_F" />
+      <st id="CLIHUM" editor="PERCENT" />
+      <st id="DEWPT" editor="TEMP_F" />
+      <st id="BARPRES" editor="MB" />
       <st id="GV4" editor="MPH" />
+      <st id="WINDDIR" editor="DEGREES" />
       <st id="GV5" editor="MPH" />
-      <st id="RAINRT" editor="inhr" />
       <st id="GV13" editor="CONDITIONS" />
       <st id="GV14" editor="PERCENT" />
       <st id="GV15" editor="MILES" />
+      <st id="GV18" editor="PERCENT" />
+      <st id="RAINRT" editor="inhr" />
       <st id="GV16" editor="UV" />
       <st id="GV17" editor="int" />
     </sts>
@@ -24,6 +25,26 @@
         <cmd id="DISCOVER" />
         <cmd id="REMOVE_NOTICES_ALL" />
         <cmd id="UPDATE_PROFILE" />
+      </accepts>
+    </cmds>
+  </nodeDef>
+
+  <nodeDef id="daily" nodeType="139" nls="dsk">
+    <editors />
+    <sts>
+      <st id="GV19" editor="DAY" />
+      <st id="GV1" editor="TEMP_F" />
+      <st id="GV2" editor="TEMP_F" />
+      <st id="GV18" editor="PERCENT" />
+      <st id="CLIHUM" editor="PERCENT" />
+      <st id="BARPRES" editor="MB" />
+      <st id="GV13" editor="CONDITIONS" />
+      <st id="GV14" editor="PERCENT" />
+      <st id="GV16" editor="UV" />
+    </sts>
+    <cmds>
+      <sends />
+      <accepts>
       </accepts>
     </cmds>
   </nodeDef>

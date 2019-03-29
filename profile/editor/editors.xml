@@ -68,5 +68,8 @@
     <editor id="MILES">
         <range uom="116" min="0" max="500" prec="2" />
     </editor>
+    <editor id="DAY">
+        <range uom="25" min="0" max="6" nls="EN_DAY" />
+    </editor>
 
 </editors>

@@ -12,8 +12,8 @@ ST-dsk-DEWPT-NAME = Dew Point
 ST-dsk-WINDDIR-NAME = Wind Direction
 ST-dsk-LUMIN-NAME = Light
 ST-dsk-GV0-NAME = Apparent Temperature
-ST-dsk-GV1-NAME = Low Temperature
-ST-dsk-GV2-NAME = Feels Like
+ST-dsk-GV1-NAME = High Temperature
+ST-dsk-GV2-NAME = Low Temperature
 ST-dsk-GV3-NAME = Average Temperature
 ST-dsk-GV4-NAME = Wind Speed
 ST-dsk-GV5-NAME = Gust Speed
@@ -29,6 +29,11 @@ ST-dsk-GV14-NAME = Cloud Conditions
 ST-dsk-GV15-NAME = Visibility
 ST-dsk-GV16-NAME = UV Index
 ST-dsk-GV17-NAME = Ozone
+ST-dsk-GV18-NAME = Chance of Rain
+ST-dsk-GV19-NAME = Day
+
+ND-daily-NAME = Daily Forecast
+ND-daily-ICON = Weather
 
 EN_RAINTYPE-0 = None
 EN_RAINTYPE-1 = Rain
@@ -82,7 +87,16 @@ EN_CONDITION-5 = wind
 EN_CONDITION-6 = fog
 EN_CONDITION-7 = cloudy
 EN_CONDITION-8 = partly cloudy day
-EN_CONDITION-9 = partyly cloudy night
+EN_CONDITION-9 = partly cloudy night
+EN_CONDITION-10 = unknown
+
+EN_DAY-0 = Sunday
+EN_DAY-1 = Monday
+EN_DAY-2 = Tuesday
+EN_DAY-3 = Wednesday
+EN_DAY-4 = Thursday
+EN_DAY-5 = Friday
+EN_DAY-6 = Saturday
 
 EN_CCONDITION-200 = Thunderstorm with light rain
 EN_CCONDITION-202 = thunderstorm with heavy rain
