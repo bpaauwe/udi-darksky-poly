@@ -21,10 +21,9 @@ This node server is intended to pull weather related data from [DarkSky](http://
 The settings for this node are:
 
 #### Short Poll
-   * This is how often it will update the last update time for each node.
-#### Long Poll
    * Query DarkStar server for observation data
-   * Sends a heartbeat as DON/DOF
+#### Long Poll
+   * Not used
 
 
 ## Requirements
@@ -49,5 +48,7 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 1.0.0 03/29/2019
+   - Added to the node server store
 - 0.0.1 12/27/2018
    - Initial version published to github

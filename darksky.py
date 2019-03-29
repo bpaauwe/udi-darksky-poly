@@ -3,13 +3,15 @@
 Polyglot v2 node server DarkSky weather data
 Copyright (C) 2019 Robert Paauwe
 """
-import polyinterface
+
+CLOUD = False
+try:
+    import polyinterface
+except ImportError:
+    import pgc_interface as polyinterface
+    CLOUD = True
 import sys
-import time
-import datetime
 import requests
-import socket
-import math
 import json
 import darksky_daily
 import write_profile
