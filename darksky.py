@@ -206,7 +206,7 @@ class Controller(polyinterface.Controller):
         if 'Units' in self.polyConfig['customParams']:
             self.units = self.polyConfig['customParams']['Units']
         else:
-            self.units = 'metric';
+            self.units = 'us';
 
         self.configured = True
 
