@@ -53,7 +53,10 @@ class Controller(polyinterface.Controller):
                     if self.units != config['customParams']['Units']:
                         self.units = config['customParams']['Units']
                         changed = True
-                        self.set_driver_units()
+                        if CLOUD:
+                            self.set_cloud_driver_units()
+                        else:
+                            self.set_driver_units()
 
                 self.myConfig = config['customParams']
                 if changed:
@@ -222,34 +225,61 @@ class Controller(polyinterface.Controller):
             self.addNotice("DarkSky API ID must be set");
             self.configured = False
 
-        self.set_driver_units()
+        if CLOUD:
+            self.set_cloud_driver_units()
+        else:
+            self.set_driver_units()
+
+    def set_cloud_driver_units(self):
+        LOGGER.info('Configure driver units to ' + self.units)
+        if self.units == 'si':
+            for drv in self.drivers:
+                if drv == 'CLITEMP': self.drivers[drv]['uom'] = 4
+                if drv == 'DEWPT': self.drivers[drv]['uom'] = 4
+                if drv == 'GV0': self.drivers[drv]['uom'] = 4
+                if drv == 'GV1': self.drivers[drv]['uom'] = 4
+                if drv == 'GV2': self.drivers[drv]['uom'] = 4
+                if drv == 'GV3': self.drivers[drv]['uom'] = 4
+                if drv == 'BARPRES': self.drivers[drv]['uom'] = 118
+                if drv == 'GV4': self.drivers[drv]['uom'] = 49
+                if drv == 'GV5': self.drivers[drv]['uom'] = 49
+                if drv == 'RAINRT': self.drivers[drv]['uom'] = 46
+                if drv == 'GV15': self.drivers[drv]['uom'] = 38
+            for day in range(1,8):
+                address = 'forecast_' + str(day)
+                self.nodes[address].set_units('si')
+        else:
+            for drv in self.drivers:
+                if drv == 'CLITEMP': self.drivers[drv]['uom'] = 17
+                if drv == 'DEWPT': self.drivers[drv]['uom'] = 17
+                if drv == 'GV0': self.drivers[drv]['uom'] = 17
+                if drv == 'GV1': self.drivers[drv]['uom'] = 17
+                if drv == 'GV2': self.drivers[drv]['uom'] = 17
+                if drv == 'GV3': self.drivers[drv]['uom'] = 17
+                if drv == 'BARPRES': self.drivers[drv]['uom'] = 117
+                if drv == 'GV4': self.drivers[drv]['uom'] = 48
+                if drv == 'GV5': self.drivers[drv]['uom'] = 48
+                if drv == 'RAINRT': self.drivers[drv]['uom'] = 24
+                if drv == 'GV15': self.drivers[drv]['uom'] = 116
+            for day in range(1,8):
+                address = 'forecast_' + str(day)
+                self.nodes[address].set_units('us')
 
     def set_driver_units(self):
         LOGGER.info('Configure drivers ---')
         if self.units == 'si':
             for driver in self.drivers:
-                if driver['driver'] == 'CLITEMP':
-                    driver['uom'] = 4
-                if driver['driver'] == 'DEWPT':
-                    driver['uom'] = 4
-                if driver['driver'] == 'BARPRES':
-                    driver['uom'] = 118
-                if driver['driver'] == 'GV0':
-                    driver['uom'] = 4
-                if driver['driver'] == 'GV1':
-                    driver['uom'] = 4
-                if driver['driver'] == 'GV2':
-                    driver['uom'] = 4
-                if driver['driver'] == 'GV3':
-                    driver['uom'] = 4
-                if driver['driver'] == 'GV4':
-                    driver['uom'] = 49
-                if driver['driver'] == 'GV5':
-                    driver['uom'] = 49
-                if driver['driver'] == 'RAINRT':
-                    driver['uom'] = 46
-                if driver['driver'] == 'GV15':
-                    driver['uom'] = 38
+                if driver['driver'] == 'CLITEMP': driver['uom'] = 4
+                if driver['driver'] == 'DEWPT': driver['uom'] = 4
+                if driver['driver'] == 'BARPRES': driver['uom'] = 118
+                if driver['driver'] == 'GV0': driver['uom'] = 4
+                if driver['driver'] == 'GV1': driver['uom'] = 4
+                if driver['driver'] == 'GV2': driver['uom'] = 4
+                if driver['driver'] == 'GV3': driver['uom'] = 4
+                if driver['driver'] == 'GV4': driver['uom'] = 49
+                if driver['driver'] == 'GV5': driver['uom'] = 49
+                if driver['driver'] == 'RAINRT': driver['uom'] = 46
+                if driver['driver'] == 'GV15': driver['uom'] = 38
             for day in range(1,8):
                 address = 'forecast_' + str(day)
                 self.nodes[address].set_units('si')
@@ -257,28 +287,17 @@ class Controller(polyinterface.Controller):
         # Write out a new node definition file here.
         else:  # imperial
             for driver in self.drivers:
-                if driver['driver'] == 'CLITEMP':
-                    driver['uom'] = 17
-                if driver['driver'] == 'DEWPT':
-                    driver['uom'] = 17
-                if driver['driver'] == 'BARPRES':
-                    driver['uom'] = 117
-                if driver['driver'] == 'GV0':
-                    driver['uom'] = 17
-                if driver['driver'] == 'GV1':
-                    driver['uom'] = 17
-                if driver['driver'] == 'GV2':
-                    driver['uom'] = 17
-                if driver['driver'] == 'GV3':
-                    driver['uom'] = 17
-                if driver['driver'] == 'GV4':
-                    driver['uom'] = 48
-                if driver['driver'] == 'GV5':
-                    driver['uom'] = 48
-                if driver['driver'] == 'RAINRT':
-                    driver['uom'] = 24
-                if driver['driver'] == 'GV15':
-                    driver['uom'] = 116
+                if driver['driver'] == 'CLITEMP': driver['uom'] = 17
+                if driver['driver'] == 'DEWPT': driver['uom'] = 17
+                if driver['driver'] == 'BARPRES': driver['uom'] = 117
+                if driver['driver'] == 'GV0': driver['uom'] = 17
+                if driver['driver'] == 'GV1': driver['uom'] = 17
+                if driver['driver'] == 'GV2': driver['uom'] = 17
+                if driver['driver'] == 'GV3': driver['uom'] = 17
+                if driver['driver'] == 'GV4': driver['uom'] = 48
+                if driver['driver'] == 'GV5': driver['uom'] = 48
+                if driver['driver'] == 'RAINRT': driver['uom'] = 24
+                if driver['driver'] == 'GV15': driver['uom'] = 116
             for day in range(1,8):
                 address = 'forecast_' + str(day)
                 self.nodes[address].set_units('us')

@@ -27,25 +27,30 @@ class DailyNode(polyinterface.Node):
             ]
 
     def set_units(self, units):
-        for driver in self.drivers:
-            if units == 'us':
-                if driver['driver'] == 'BARPRES':
-                    driver['uom'] = 117
-                if driver['driver'] == 'GV1':
-                    driver['uom'] = 17
-                if driver['driver'] == 'GV2':
-                    driver['uom'] = 17
-                if driver['driver'] == 'GV19':
-                    driver['uom'] = 25
-            elif units == 'si':
-                if driver['driver'] == 'BARPRES':
-                    driver['uom'] = 118
-                if driver['driver'] == 'GV1':
-                    driver['uom'] = 4
-                if driver['driver'] == 'GV2':
-                    driver['uom'] = 4
-                if driver['driver'] == 'GV19':
-                    driver['uom'] = 25
+        try:
+            for driver in self.drivers:
+                if units == 'us':
+                    if driver['driver'] == 'BARPRES': driver['uom'] = 117
+                    if driver['driver'] == 'GV1': driver['uom'] = 17
+                    if driver['driver'] == 'GV2': driver['uom'] = 17
+                    if driver['driver'] == 'GV19': driver['uom'] = 25
+                elif units == 'si':
+                    if driver['driver'] == 'BARPRES': driver['uom'] = 118
+                    if driver['driver'] == 'GV1': driver['uom'] = 4
+                    if driver['driver'] == 'GV2': driver['uom'] = 4
+                    if driver['driver'] == 'GV19': driver['uom'] = 25
+        except:
+            for drv in self.drivers:
+                if units == 'us':
+                    if drv == 'BARPRES': self.drivers[drv]['uom'] = 117
+                    if drv == 'GV1': self.drivers[drv]['uom'] = 17
+                    if drv == 'GV2': self.drivers[drv]['uom'] = 17
+                    if drv == 'GV19': self.drivers[drv]['uom'] = 25
+                elif units == 'si':
+                    if drv == 'BARPRES': self.drivers[drv]['uom'] = 118
+                    if drv == 'GV1': self.drivers[drv]['uom'] = 4
+                    if drv == 'GV2': self.drivers[drv]['uom'] = 4
+                    if drv == 'GV19': self.drivers[drv]['uom'] = 25
 
     def icon_2_int(self, icn):
         return {
