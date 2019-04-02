@@ -48,6 +48,8 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 1.0.2 04/02/2019
+   - Rework unit code and fix requirments for cloud Polyglot.
 - 1.0.1 04/01/2019
    - Actually use the units configuration value in the query.
 - 1.0.0 03/29/2019
