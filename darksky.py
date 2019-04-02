@@ -115,7 +115,7 @@ class Controller(polyinterface.Controller):
         request += self.location
 
         # units= 'auto' 'ca' 'si' 'us' 'uk2'
-        #request += '?units=' + self.units
+        request += '?units=' + self.units
 
         LOGGER.debug('request = %s' % request)
 
