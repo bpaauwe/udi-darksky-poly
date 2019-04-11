@@ -26,6 +26,7 @@ class DailyNode(polyinterface.Node):
             {'driver': 'GV13', 'value': 0, 'uom': 25},     # conditions
             {'driver': 'GV14', 'value': 0, 'uom': 22},     # clouds
             {'driver': 'GV16', 'value': 0, 'uom': 71},     # UV index
+            {'driver': 'GV20', 'value': 0, 'uom': 106},    # mm/day
             ]
 
     def set_units(self, units):
@@ -87,9 +88,10 @@ class DailyNode(polyinterface.Node):
         Tmax = float(jdata['temperatureMax'])
         Hmin = Hmax = float(jdata['humidity'])
         Ws = float(jdata['windSpeed'])
-        J = datetime.fromtimestamp(jdata['time']).timetuple().tm_yday
+        J = datetime.datetime.fromtimestamp(jdata['time']).timetuple().tm_yday
 
         et0 = et3.evapotranspriation(Tmax, Tmin, None, Ws, 401.33, Hmax, Hmin, latitude, 0.23, J)
-        LOGGER.info("ETo = ", et0)
+        self.setDriver('GV20', round(et0, 2), True, True)
+        LOGGER.info("ETo = %f", et0)
 
 

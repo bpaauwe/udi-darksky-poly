@@ -31,6 +31,7 @@ ST-dsk-GV16-NAME = UV Index
 ST-dsk-GV17-NAME = Ozone
 ST-dsk-GV18-NAME = Chance of Rain
 ST-dsk-GV19-NAME = Day
+ST-dsk-GV20-NAME = Evapotranspiration
 
 ND-daily-NAME = Daily Forecast
 ND-daily-ICON = Weather

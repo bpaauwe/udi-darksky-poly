@@ -39,6 +39,7 @@ uom = {
         46 : 'mmhr',
         24 : 'inhr',
         9 : 'DAY',
+        106 : 'ET',
         }
 
 index_editor = {

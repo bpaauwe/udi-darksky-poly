@@ -3,19 +3,19 @@
     <editors />
     <sts>
       <st id="ST" editor="bool" />
-      <st id="CLITEMP" editor="TEMP_F" />
-      <st id="GV0" editor="TEMP_F" />
+      <st id="CLITEMP" editor="TEMP_C" />
+      <st id="GV0" editor="TEMP_C" />
       <st id="CLIHUM" editor="PERCENT" />
-      <st id="DEWPT" editor="TEMP_F" />
-      <st id="BARPRES" editor="MB" />
-      <st id="GV4" editor="MPH" />
+      <st id="DEWPT" editor="TEMP_C" />
+      <st id="BARPRES" editor="HPA" />
+      <st id="GV4" editor="MPS" />
       <st id="WINDDIR" editor="DEGREES" />
-      <st id="GV5" editor="MPH" />
+      <st id="GV5" editor="MPS" />
       <st id="GV13" editor="CONDITIONS" />
       <st id="GV14" editor="PERCENT" />
-      <st id="GV15" editor="MILES" />
+      <st id="GV15" editor="METERS" />
       <st id="GV18" editor="PERCENT" />
-      <st id="RAINRT" editor="inhr" />
+      <st id="RAINRT" editor="mmhr" />
       <st id="GV16" editor="UV" />
       <st id="GV17" editor="int" />
     </sts>
@@ -33,14 +33,15 @@
     <editors />
     <sts>
       <st id="GV19" editor="DAY" />
-      <st id="GV1" editor="TEMP_F" />
-      <st id="GV2" editor="TEMP_F" />
+      <st id="GV1" editor="TEMP_C" />
+      <st id="GV2" editor="TEMP_C" />
       <st id="GV18" editor="PERCENT" />
       <st id="CLIHUM" editor="PERCENT" />
-      <st id="BARPRES" editor="MB" />
+      <st id="BARPRES" editor="HPA" />
       <st id="GV13" editor="CONDITIONS" />
       <st id="GV14" editor="PERCENT" />
       <st id="GV16" editor="UV" />
+      <st id="GV20" editor="ET" />
     </sts>
     <cmds>
       <sends />
