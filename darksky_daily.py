@@ -9,6 +9,8 @@ except ImportError:
 
 import json
 import time
+import datetime
+import et3
 
 LOGGER = polyinterface.LOGGER
 
@@ -66,7 +68,7 @@ class DailyNode(polyinterface.Node):
                 'partly-cloudy-night': 9,
                 }.get(icn, 0)
 
-    def update_forecast(self, jdata):
+    def update_forecast(self, jdata, latitude):
         epoch = int(jdata['time'])
         dow = time.strftime("%w", time.gmtime(epoch))
         LOGGER.info('Day of week = ' + dow)
@@ -79,5 +81,15 @@ class DailyNode(polyinterface.Node):
         self.setDriver('GV16', float(jdata['uvIndex']), True, True)
         self.setDriver('GV18', float(jdata['precipProbability']) * 100, True, True)
         self.setDriver('GV19', int(dow), True, True)
+
+        # Calculate ETo
+        Tmin = float(jdata['temperatureMin'])
+        Tmax = float(jdata['temperatureMax'])
+        Hmin = Hmax = float(jdata['humidity'])
+        Ws = float(jdata['windSpeed'])
+        J = datetime.fromtimestamp(jdata['time']).timetuple().tm_yday
+
+        et0 = et3.evapotranspriation(Tmax, Tmin, None, Ws, 401.33, Hmax, Hmin, latitude, 0.23, J)
+        LOGGER.info("ETo = ", et0)
 
 
