@@ -9,5 +9,9 @@ parameters:
 
 - Units    : 'si' or 'us' request data in this units format.
 
+- Elevation : The elevation, in meters, of the location.
+
+- Plant Type: Used as part of the ETo calculation to compensate for different types of ground cover.  Default is 0.23
+
 To get an API key, register at www.darksky.net.  
 
