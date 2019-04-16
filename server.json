@@ -9,12 +9,12 @@
     "notice": "Powered by DarkSky",
     "shortPoll": "120",
     "longPoll": "600",
-    "profile_version": "1.0.1",
+    "profile_version": "1.1.0",
     "credits": [ {
 	"title": "DarkSky: A node server for weather data",
     	"author": "Bob Paauwe",
-    	"version": "1.0.2",
-    	"date": "April 2, 2019",
+    	"version": "1.1.0",
+    	"date": "April 16, 2019",
     	"source": "https://github.com/bpaauwe/udi-darksky-poly",
 	"license": "https://github.com/bpaauwe/udi-darksky-poly/LICENSE"
 	} ]

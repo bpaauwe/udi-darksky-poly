@@ -48,6 +48,9 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 1.1.0 04/16/2019
+   - Add evapotranspiration calculations to forecast data.
+   - Only send data when it has changed.
 - 1.0.2 04/02/2019
    - Rework unit code and fix requirments for cloud Polyglot.
 - 1.0.1 04/01/2019
