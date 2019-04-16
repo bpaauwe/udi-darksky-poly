@@ -69,7 +69,10 @@ class DailyNode(polyinterface.Node):
                 'partly-cloudy-night': 9,
                 }.get(icn, 0)
 
-    def update_forecast(self, jdata, latitude):
+    def mm2inch(self, mm):
+        return mm/25.4
+
+    def update_forecast(self, jdata, latitude, elevation, plant_type, units):
         epoch = int(jdata['time'])
         dow = time.strftime("%w", time.gmtime(epoch))
         LOGGER.info('Day of week = ' + dow)
@@ -84,14 +87,22 @@ class DailyNode(polyinterface.Node):
         self.setDriver('GV19', int(dow), True, False)
 
         # Calculate ETo
+        #  Temp is in degree C and windspeed is in m/s, we may need to
+        #  convert these.
         Tmin = float(jdata['temperatureMin'])
         Tmax = float(jdata['temperatureMax'])
         Hmin = Hmax = float(jdata['humidity'])
         Ws = float(jdata['windSpeed'])
         J = datetime.datetime.fromtimestamp(jdata['time']).timetuple().tm_yday
 
-        et0 = et3.evapotranspriation(Tmax, Tmin, None, Ws, 401.33, Hmax, Hmin, latitude, 0.23, J)
-        self.setDriver('GV20', round(et0, 2), True, True)
-        LOGGER.info("ETo = %f", et0)
+        if units != 'si':
+            LOGGER.info('Conversion of temperature/wind speed required')
+            Tmin = et3.FtoC(Tmin)
+            Tmax = et3.FtoC(Tmax)
+            Ws = et3.mph2ms(Ws)
+
+        et0 = et3.evapotranspriation(Tmax, Tmin, None, Ws, float(elevation), Hmax, Hmin, latitude, float(plant_type), J)
+        self.setDriver('GV20', round(et0, 2), True, False)
+        LOGGER.info("ETo = %f %f" % (et0, self.mm2inch(et0)))
 
 

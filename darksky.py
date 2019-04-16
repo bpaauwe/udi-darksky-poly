@@ -32,6 +32,8 @@ class Controller(polyinterface.Controller):
         self.units = 'us'
         self.configured = False
         self.myConfig = {}
+        self.plant_type = 0.23
+        self.elevation = 0
 
         self.poly.onConfig(self.process_config)
 
@@ -44,6 +46,14 @@ class Controller(polyinterface.Controller):
                 if 'Location' in config['customParams']:
                     if self.location != config['customParams']['Location']:
                         self.location = config['customParams']['Location']
+                        changed = True
+                if 'Elevation' in config['customParams']:
+                    if self.elevation != config['customParams']['Elevation']:
+                        self.elevation = config['customParams']['Elevation']
+                        changed = True
+                if 'Plant Type' in config['customParams']:
+                    if self.plant_type != config['customParams']['Plant Type']:
+                        self.plant_type = config['customParams']['Plant Type']
                         changed = True
                 if 'APIkey' in config['customParams']:
                     if self.apikey != config['customParams']['APIkey']:
@@ -179,7 +189,7 @@ class Controller(polyinterface.Controller):
         # Daily data is 7 day forecast, index 0 is today
         for day in range(1,8):
             address = 'forecast_' + str(day)
-            self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'])
+            self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.elevation, self.plant_type, self.units)
         
     def query(self):
         for node in self.nodes:
@@ -206,6 +216,10 @@ class Controller(polyinterface.Controller):
             self.location = self.polyConfig['customParams']['Location']
         if 'APIkey' in self.polyConfig['customParams']:
             self.apikey = self.polyConfig['customParams']['APIkey']
+        if 'Elevation' in self.polyConfig['customParams']:
+            self.elevation = self.polyConfig['customParams']['Elevation']
+        if 'Plant Type' in self.polyConfig['customParams']:
+            self.plant_type = self.polyConfig['customParams']['Plant Type']
         if 'Units' in self.polyConfig['customParams']:
             self.units = self.polyConfig['customParams']['Units']
         else:
@@ -216,7 +230,9 @@ class Controller(polyinterface.Controller):
         self.addCustomParam( {
             'Location': self.location,
             'APIkey': self.apikey,
-            'Units': self.units } )
+            'Units': self.units,
+            'Elevation': self.elevation,
+            'Plant Type': self.plant_type} )
 
         LOGGER.info('api id = %s' % self.apikey)
 
