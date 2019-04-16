@@ -53,10 +53,13 @@ class Controller(polyinterface.Controller):
                     if self.units != config['customParams']['Units']:
                         self.units = config['customParams']['Units']
                         changed = True
-                        if CLOUD:
-                            self.set_cloud_driver_units()
-                        else:
-                            self.set_driver_units()
+                        try:
+                            if CLOUD:
+                                self.set_cloud_driver_units()
+                            else:
+                                self.set_driver_units()
+                        except:
+                            LOGGER.debug('set driver units failed')
 
                 self.myConfig = config['customParams']
                 if changed:
