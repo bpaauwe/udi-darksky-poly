@@ -48,6 +48,8 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 1.1.1 04/19/2019
+   - Fix spelling error for forecast node titles
 - 1.1.0 04/16/2019
    - Add evapotranspiration calculations to forecast data.
    - Only send data when it has changed.

@@ -88,7 +88,7 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Add node for forecast')
         for day in range(1,8):
             address = 'forecast_' + str(day)
-            title = 'Forcast ' + str(day)
+            title = 'Forecast ' + str(day)
 
             try:
                 node = darksky_daily.DailyNode(self, self.address, address, title)
