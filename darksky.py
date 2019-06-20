@@ -189,7 +189,8 @@ class Controller(polyinterface.Controller):
         # Daily data is 7 day forecast, index 0 is today
         for day in range(1,8):
             address = 'forecast_' + str(day)
-            self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.elevation, self.plant_type, self.units)
+            try:
+                self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.elevation, self.plant_type, self.units)
         
     def query(self):
         for node in self.nodes:
