@@ -48,6 +48,8 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 1.1.3 06/21/2019
+   - Fix bug introduced with previous change
 - 1.1.2 06/20/2019
    - Add exeption handling to forecast data processing
 - 1.1.1 04/19/2019
