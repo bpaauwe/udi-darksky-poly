@@ -72,7 +72,7 @@
         <range uom="25" min="0" max="6" nls="EN_DAY" />
     </editor>
     <editor id="ET">
-        <range uom="106" prec="2" />
+        <range uom="106" min="0" max="100" prec="2" />
     </editor>
 
 </editors>
