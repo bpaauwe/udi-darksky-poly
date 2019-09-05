@@ -48,6 +48,8 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 1.1.5 09/05/2019
+   - Trap http request errors.
 - 1.1.4 07/12/2019
    - Fix editor profile file ET entry.
 - 1.1.3 06/21/2019
