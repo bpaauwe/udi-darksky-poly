@@ -139,60 +139,63 @@ class Controller(polyinterface.Controller):
             LOGGER.info('Skipping connection because we aren\'t configured yet.')
             return
 
-        c = requests.get(request)
-        jdata = c.json()
-        #LOGGER.debug(jdata)
-        #LOGGER.debug(jdata['currently'])
+        try:
+            c = requests.get(request)
+            jdata = c.json()
+            #LOGGER.debug(jdata)
+            #LOGGER.debug(jdata['currently'])
 
-        for key in jdata:
-            LOGGER.debug('found key: ' + key)
-            #LOGGER.debug(jdata[key])
+            for key in jdata:
+                LOGGER.debug('found key: ' + key)
+                #LOGGER.debug(jdata[key])
 
-        # Assume we always get the main section with data
-        # TODO: Convert icon to number that maps to condition string
-        #       in NLS
-        #  values: 'clear-day' 'clear-night' 'rain' 'snow' 'sleet' 'wind'
-        #          'fog' 'cloudy' 'partly-cloudy-day' 'partly cloudy-night'
-        self.setDriver('GV13', self.icon_2_int(jdata['currently']['icon']),
+            # Assume we always get the main section with data
+            # TODO: Convert icon to number that maps to condition string
+            #       in NLS
+            #  values: 'clear-day' 'clear-night' 'rain' 'snow' 'sleet' 'wind'
+            #          'fog' 'cloudy' 'partly-cloudy-day' 'partly cloudy-night'
+            self.setDriver('GV13', self.icon_2_int(jdata['currently']['icon']),
                 report=True, force=False)
-        self.setDriver('CLITEMP', float(jdata['currently']['temperature']),
+            self.setDriver('CLITEMP', float(jdata['currently']['temperature']),
                 report=True, force=False)
-        self.setDriver('CLIHUM', float(jdata['currently']['humidity']) * 100,
+            self.setDriver('CLIHUM', float(jdata['currently']['humidity']) * 100,
                 report=True, force=False)
-        self.setDriver('BARPRES', float(jdata['currently']['pressure']),
+            self.setDriver('BARPRES', float(jdata['currently']['pressure']),
                 report=True, force=False)
-        self.setDriver('GV4', float(jdata['currently']['windSpeed']),
+            self.setDriver('GV4', float(jdata['currently']['windSpeed']),
                 report=True, force=False)
-        self.setDriver('GV5', float(jdata['currently']['windGust']),
+            self.setDriver('GV5', float(jdata['currently']['windGust']),
                 report=True, force=False)
-        self.setDriver('WINDDIR', float(jdata['currently']['windBearing']),
+            self.setDriver('WINDDIR', float(jdata['currently']['windBearing']),
                 report=True, force=False)
-        self.setDriver('GV15', float(jdata['currently']['visibility']),
+            self.setDriver('GV15', float(jdata['currently']['visibility']),
                 report=True, force=False)
-        self.setDriver('GV14', float(jdata['currently']['cloudCover'] * 100),
+            self.setDriver('GV14', float(jdata['currently']['cloudCover'] * 100),
                 report=True, force=False)
-        self.setDriver('GV16', float(jdata['currently']['uvIndex']), True, True)
-        self.setDriver('GV0', float(jdata['currently']['apparentTemperature']),
+            self.setDriver('GV16', float(jdata['currently']['uvIndex']), True, True)
+            self.setDriver('GV0', float(jdata['currently']['apparentTemperature']),
                 report=True, force=False)
-        self.setDriver('DEWPT', float(jdata['currently']['dewPoint']),
+            self.setDriver('DEWPT', float(jdata['currently']['dewPoint']),
                 report=True, force=False)
-        self.setDriver('GV6', float(jdata['currently']['precipIntensity']),
+            self.setDriver('GV6', float(jdata['currently']['precipIntensity']),
                 report=True, force=False)
-        self.setDriver('GV17', float(jdata['currently']['ozone']), True, False)
+            self.setDriver('GV17', float(jdata['currently']['ozone']), True, False)
 
-        # other data
-        # nearestStormDistance
-        # precipIntensityError
-        # precipProbability
-        # precipType
+            # other data
+            # nearestStormDistance
+            # precipIntensityError
+            # precipProbability
+            # precipType
 
-        # Daily data is 7 day forecast, index 0 is today
-        for day in range(1,8):
-            address = 'forecast_' + str(day)
-            try:
-                self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.elevation, self.plant_type, self.units)
-            except:
-                LOGGER.debug('Failed to query forecast data for day ' + day)
+            # Daily data is 7 day forecast, index 0 is today
+            for day in range(1,8):
+                address = 'forecast_' + str(day)
+                try:
+                    self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.elevation, self.plant_type, self.units)
+                except:
+                    LOGGER.debug('Failed to query forecast data for day ' + day)
+        except:
+            LOGGER.error('request failed: ' + request)
         
     def query(self):
         for node in self.nodes:
