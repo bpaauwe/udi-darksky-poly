@@ -5,7 +5,7 @@ This is the DarkSky node server for the [Universal Devices ISY994i](https://www.
 (c) 2018 Robert Paauwe
 MIT license.
 
-This node server is intended to pull weather related data from [DarkSky](http://www.darksky.net/) and make it available via ISY nodes. To access this data you must register with darksky.net and obtain an API key. Note that currently the first 1000 requests per day are free. This means setting the polling to something more frequentlly than 2 minutes will incur usage charges.
+This node server is intended to pull weather related data from [DarkSky](http://www.darksky.net/) and make it available via ISY nodes. To access this data you must register with darksky.net and obtain an API key. Note that currently the first 1000 requests per day are free. This means setting the polling to something more frequently than 2 minutes will incur usage charges.
 
 ## Installation
 
@@ -15,7 +15,19 @@ This node server is intended to pull weather related data from [DarkSky](http://
 3. Add NodeServer in Polyglot Web
    * After the install completes, Polyglot will reboot your ISY, you can watch the status in the main polyglot log.
 4. Once your ISY is back up open the Admin Console.
-5. Configure the node server with your station ID.
+5. Configure the node server with the following custom parameters:
+- APIkey   : Your API ID, needed to authorize connection to the DarkSky API.
+
+- Location : latitude and longitude of the location to query the data for. ex: 42.3601,-71.0589
+
+- Units    : 'si' or 'us' request data in this units format.
+
+- Elevation : The elevation, in meters, of the location.
+
+- Plant Type: Used as part of the ETo calculation to compensate for different types of ground cover.  Default is 0.23
+
+To get an API key, register at www.darksky.net.  
+
 
 ### Node Settings
 The settings for this node are:
