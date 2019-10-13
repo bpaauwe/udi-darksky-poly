@@ -155,7 +155,7 @@ class Controller(polyinterface.Controller):
             #  values: 'clear-day' 'clear-night' 'rain' 'snow' 'sleet' 'wind'
             #          'fog' 'cloudy' 'partly-cloudy-day' 'partly cloudy-night'
             self.setDriver('GV13', self.icon_2_int(jdata['currently']['icon']),
-                report=True, force=False)
+                report=True, force=True)
             self.setDriver('CLITEMP', float(jdata['currently']['temperature']),
                 report=True, force=False)
             self.setDriver('CLIHUM', float(jdata['currently']['humidity']) * 100,
@@ -180,6 +180,9 @@ class Controller(polyinterface.Controller):
             self.setDriver('GV6', float(jdata['currently']['precipIntensity']),
                 report=True, force=False)
             self.setDriver('GV17', float(jdata['currently']['ozone']), True, False)
+            self.setDriver('RAINRT', float(jdata['currently']['precipIntensity']), True, False)
+            self.setDriver('GV18', float(jdata['currently']['precipProbability']) * 100, True, False)
+
 
             # other data
             # nearestStormDistance
