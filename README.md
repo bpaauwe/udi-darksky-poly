@@ -60,6 +60,8 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 1.1.6 10/13/2019
+   - Add preciptation rate and chance of preciptiation
 - 1.1.5 09/05/2019
    - Trap http request errors.
 - 1.1.4 07/12/2019
