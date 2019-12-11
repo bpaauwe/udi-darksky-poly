@@ -20,6 +20,8 @@ This node server is intended to pull weather related data from [DarkSky](http://
 
 - Location : latitude and longitude of the location to query the data for. ex: 42.3601,-71.0589
 
+- Forecast Days : The number of days of forecast data to track.
+
 - Units    : 'si' or 'us' request data in this units format.
 
 - Elevation : The elevation, in meters, of the location.
