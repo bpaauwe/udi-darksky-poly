@@ -3,21 +3,21 @@
     <editors />
     <sts>
       <st id="ST" editor="bool" />
-      <st id="CLITEMP" editor="TEMP_C" />
-      <st id="GV0" editor="TEMP_C" />
+      <st id="CLITEMP" editor="TEMPERATURE" />
+      <st id="GV0" editor="TEMPERATURE" />
       <st id="CLIHUM" editor="PERCENT" />
-      <st id="DEWPT" editor="TEMP_C" />
-      <st id="BARPRES" editor="HPA" />
-      <st id="GV4" editor="MPS" />
+      <st id="DEWPT" editor="TEMPERATURE" />
+      <st id="BARPRES" editor="PRESSURE" />
+      <st id="GV4" editor="SPEED" />
       <st id="WINDDIR" editor="DEGREES" />
-      <st id="GV5" editor="MPS" />
+      <st id="GV5" editor="SPEED" />
       <st id="GV13" editor="CONDITIONS" />
       <st id="GV14" editor="PERCENT" />
-      <st id="GV15" editor="METERS" />
+      <st id="GV15" editor="DISTANCE" />
       <st id="GV18" editor="PERCENT" />
-      <st id="RAINRT" editor="mmhr" />
+      <st id="RAINRT" editor="RAINRT" />
       <st id="GV16" editor="UV" />
-      <st id="GV17" editor="int" />
+      <st id="GV10" editor="OZONE" />
     </sts>
     <cmds>
       <sends />
@@ -25,6 +25,9 @@
         <cmd id="DISCOVER" />
         <cmd id="REMOVE_NOTICES_ALL" />
         <cmd id="UPDATE_PROFILE" />
+        <cmd id="DEBUG">
+			<p id="" editor="DEBUG" init="30"/>
+		</cmd>
       </accepts>
     </cmds>
   </nodeDef>
@@ -33,11 +36,11 @@
     <editors />
     <sts>
       <st id="GV19" editor="DAY" />
-      <st id="GV1" editor="TEMP_C" />
-      <st id="GV2" editor="TEMP_C" />
+      <st id="GV1" editor="TEMPERATURE" />
+      <st id="GV2" editor="TEMPERATURE" />
       <st id="GV18" editor="PERCENT" />
       <st id="CLIHUM" editor="PERCENT" />
-      <st id="BARPRES" editor="HPA" />
+      <st id="BARPRES" editor="PRESSURE" />
       <st id="GV13" editor="CONDITIONS" />
       <st id="GV14" editor="PERCENT" />
       <st id="GV16" editor="UV" />

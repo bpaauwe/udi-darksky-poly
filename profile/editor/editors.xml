@@ -5,10 +5,8 @@
     <editor id="int">
         <range uom="56" min="0" max="150" step="1" prec="1" />
     </editor>
-    <editor id="TEMP_F">
+    <editor id="TEMPERATURE">
         <range uom="17" min="-50" max="150" step="1" prec="1" />
-    </editor>
-    <editor id="TEMP_C">
         <range uom="4" min="-50" max="150" step="1" prec="1" />
     </editor>
     <editor id="PERCENT">
@@ -16,26 +14,25 @@
     </editor>
     <editor id="PRESSURE">
         <range uom="23" min="0" max="100" prec="3" />
+        <range uom="117" min="1000" max="2000" prec="2" />
+        <range uom="118" min="1000" max="2000" prec="2" />
     </editor>
     <editor id="LUMIN">
         <range uom="36" min="0" max="200000" prec="0" />
     </editor>
-    <editor id="MPH">
+    <editor id="SPEED">
         <range uom="48" min="0" max="500" prec="1" />
-    </editor>
-    <editor id="MPS">
         <range uom="49" min="0" max="500" prec="0" />
     </editor>
     <editor id="DEGREES">
         <range uom="76" min="0" max="360" prec="0" />
     </editor>
-    <editor id="INCHES">
+    <editor id="RAIN">
         <range uom="105" min="0" max="20000" prec="3" />
+        <range uom="82" min="0" max="10000" prec="1" />
     </editor>
-    <editor id="inhr">
+    <editor id="RAINRT">
         <range uom="24" min="0" max="2000" prec="4" />
-    </editor>
-    <editor id="mmhr">
         <range uom="46" min="0" max="2000" prec="4" />
     </editor>
     <editor id="METERS">
@@ -50,29 +47,31 @@
     <editor id="INTENSITY">
         <range uom="70" min="0" max="100" prec="0" />
     </editor>
-    <editor id="INHG">
-        <range uom="23" min="0" max="100" prec="3" />
-    </editor>
-    <editor id="MB">
-        <range uom="117" min="1000" max="2000" prec="2" />
-    </editor>
-    <editor id="HPA">
-        <range uom="118" min="1000" max="2000" prec="2" />
-    </editor>
     <editor id="UV">
         <range uom="71" min="0" max="15" prec="1" />
     </editor>
     <editor id="OZONE">
         <range uom="56" min="0" max="500" prec="2" />
     </editor>
-    <editor id="MILES">
+    <editor id="DISTANCE">
         <range uom="116" min="0" max="500" prec="2" />
+        <range uom="83" min="0" max="10000" prec="1" />
+        <range uom="38" min="0" max="200000" prec="2" />
     </editor>
     <editor id="DAY">
         <range uom="25" min="0" max="6" nls="EN_DAY" />
     </editor>
     <editor id="ET">
         <range uom="106" min="0" max="100" prec="2" />
+    </editor>
+	<editor id="MOON">
+        <range uom="56" min="0" max="1" prec="1" />
+    </editor>
+    <editor id="SOLARRAD">
+        <range uom="71" min="0" max="100000" prec="0" />
+    </editor>
+	<editor id="DEBUG">
+        <range uom="25" subset="0,10,20,30,40,50" nls="DBG" />
     </editor>
 
 </editors>
