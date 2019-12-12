@@ -223,7 +223,7 @@ class Controller(polyinterface.Controller):
     def discover(self, *args, **kwargs):
         # Create forecast nodes here.  We have up to 7 days.
         LOGGER.info("In Discovery...")
-        num_days = int(slef.params.get('Forecast Days'))
+        num_days = int(self.params.get('Forecast Days'))
 
         if num_days < 7:
             for day in range(num_days + 1, 7):
