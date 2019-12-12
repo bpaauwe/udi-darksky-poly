@@ -271,7 +271,7 @@ class Controller(polyinterface.Controller):
             LOGGER.debug('Configuration required.')
             LOGGER.debug('APIKey = ' + self.params.get('APIKey'))
             LOGGER.debug('Location = ' + self.params.get('Location'))
-            self.params.set_notices(self)
+            self.params.send_notices(self)
 
     def set_driver_uom(self, units):
         LOGGER.info('Configure driver units to ' + units)
