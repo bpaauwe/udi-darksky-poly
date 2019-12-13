@@ -176,6 +176,7 @@ class Controller(polyinterface.Controller):
 
             if 'error' in jdata:
                 LOGGER.error('DarkSky reports ' + jdata['error'])
+                self.addNotice('error', jdata['error'])
                 return
 
             # Assume we always get the main section with data
