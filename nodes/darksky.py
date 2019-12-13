@@ -278,7 +278,7 @@ class Controller(polyinterface.Controller):
     def set_driver_uom(self, units):
         LOGGER.info('Configure driver units to ' + units)
         self.uom = uom.get_uom(units)
-        for day in range(1, int(self.params.get('Forecast Days')) + 1):
+        for day in range(0, int(self.params.get('Forecast Days'))):
             address = 'forecast_' + str(day)
             self.nodes[address].set_driver_uom(units)
 
