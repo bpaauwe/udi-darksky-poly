@@ -206,9 +206,11 @@ class Controller(polyinterface.Controller):
             # precipType
 
             # Daily data is 7 day forecast, index 0 is today
-            LOGGER.debug('Process forecast data')
-            for day in range(1,self.params.get('Forecast Days')):
+            num_days = int(self.params.get('Forecast Days'))
+            LOGGER.debug('Process forecast data for ' + str(num_days) + ' days')
+            for day in range(1,num_days):
                 address = 'forecast_' + str(day)
+                LOGGER.debug('calling update_forecast for ' + address)
                 try:
                     self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.params.get('Elevation'), self.params.get('Plant Type'), self.params.get('Units'))
                 except:
