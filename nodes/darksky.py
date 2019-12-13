@@ -164,7 +164,7 @@ class Controller(polyinterface.Controller):
             return
 
         try:
-            jdata = get_weather_data()
+            jdata = self.get_weather_data()
 
             if jdata == None:
                 LOGGER.error('Query returned no data')
