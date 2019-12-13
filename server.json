@@ -7,7 +7,7 @@
     "install_cloud": "install_cloud.sh",
     "description": "Add weather data to the ISY994",
     "notice": "Powered by DarkSky",
-    "shortPoll": "120",
+    "shortPoll": "600",
     "longPoll": "600",
     "profile_version": "1.1.1",
     "credits": [ {
