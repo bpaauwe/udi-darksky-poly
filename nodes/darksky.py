@@ -174,6 +174,10 @@ class Controller(polyinterface.Controller):
                 LOGGER.debug('found key: ' + key)
                 #LOGGER.debug(jdata[key])
 
+            if 'error' in jdata:
+                LOGGER.error('DarkSky reports ' + jdata['error'])
+                return
+
             # Assume we always get the main section with data
             # 'currently' is the current conditions
             # 'daily' is the daily forecats
