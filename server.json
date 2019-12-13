@@ -1,6 +1,6 @@
 {
     "name": "DarkSky",
-    "docs": "http;//www.bobsplace.com/",
+    "docs": "https:/github.com/bpaauwe/udi-darksky-poly/
     "type": "python3",
     "executable": "darksky.py",
     "install": "install.sh",
