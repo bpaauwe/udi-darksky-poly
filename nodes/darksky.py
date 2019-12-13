@@ -196,7 +196,6 @@ class Controller(polyinterface.Controller):
             self.update_driver('GV16', float(ob['uvIndex']), force)
             self.update_driver('GV0', float(ob['apparentTemperature']), force)
             self.update_driver('DEWPT', float(ob['dewPoint']), force)
-            self.update_driver('GV6', float(ob['precipIntensity']), force)
             self.update_driver('GV17', float(ob['ozone']), force)
             self.update_driver('RAINRT', float(ob['precipIntensity']), force)
             self.update_driver('GV18', float(ob['precipProbability']) * 100, force)
@@ -207,10 +206,11 @@ class Controller(polyinterface.Controller):
             # precipType
 
             # Daily data is 7 day forecast, index 0 is today
-            for day in range(1,8):
+            LOGGER.debug('Process forecast data')
+            for day in range(1,self.params.get('Forecast Days')):
                 address = 'forecast_' + str(day)
                 try:
-                    self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.elevation, self.plant_type, self.units)
+                    self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.params.get('Elevation'), self.params.get('Plant Type'), self.params.get('Units'))
                 except:
                     LOGGER.debug('Failed to query forecast data for day ' + day)
         except:
