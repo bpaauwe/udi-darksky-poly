@@ -228,7 +228,7 @@ class Controller(polyinterface.Controller):
         num_days = int(self.params.get('Forecast Days'))
 
         if num_days < 7:
-            for day in range(num_days + 1, 7):
+            for day in range(num_days, 7):
                 address = 'forecast_' + str(day)
                 try:
                     self.delNode(address)
@@ -238,7 +238,7 @@ class Controller(polyinterface.Controller):
         if num_days == 0:
             return
 
-        for day in range(1, num_days + 1):
+        for day in range(0, num_days):
             address = 'forecast_' + str(day)
             title = 'Forecast ' + str(day)
             try:
