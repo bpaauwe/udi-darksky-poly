@@ -199,7 +199,7 @@ class Controller(polyinterface.Controller):
             self.update_driver('GV6', float(ob['precipIntensity']), force)
             self.update_driver('GV17', float(ob['ozone']), force)
             self.update_driver('RAINRT', float(ob['precipIntensity']), force)
-            self.setupdate_driver('GV18', float(ob['precipProbability']) * 100, force)
+            self.update_driver('GV18', float(ob['precipProbability']) * 100, force)
 
             # other possible data
             # nearestStormDistance
