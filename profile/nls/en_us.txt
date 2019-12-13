@@ -4,6 +4,7 @@ ND-dsweather-ICON = Weather
 CMD-dsk-DISCOVER-NAME = Re-Discover
 CMD-dsk-UPDATE_PROFILE-NAME = Update Profile
 CMD-dsk-REMOVE_NOTICES_ALL-NAME = Remove Notices
+CMD-dsk-DEBUG-NAME = Log Level
 ST-dsk-ST-NAME = NodeServer Online
 ST-dsk-CLITEMP-NAME = Temperature
 ST-dsk-CLIHUM-NAME = Humidity
@@ -36,6 +37,13 @@ ST-dsk-GV20-NAME = Evapotranspiration
 
 ND-daily-NAME = Daily Forecast
 ND-daily-ICON = Weather
+
+DBG-0 = Off
+DBG-10 = Debug
+DBG-20 = Info
+DBG-30 = Warning
+DBG-40 = Error
+DBG-50 = Critical
 
 EN_RAINTYPE-0 = None
 EN_RAINTYPE-1 = Rain
