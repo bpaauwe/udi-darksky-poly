@@ -208,7 +208,7 @@ class Controller(polyinterface.Controller):
             # Daily data is 7 day forecast, index 0 is today
             num_days = int(self.params.get('Forecast Days'))
             LOGGER.debug('Process forecast data for ' + str(num_days) + ' days')
-            for day in range(1,num_days):
+            for day in range(0,num_days):
                 address = 'forecast_' + str(day)
                 LOGGER.debug('calling update_forecast for ' + address)
                 try:
