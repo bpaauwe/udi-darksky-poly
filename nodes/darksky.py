@@ -201,7 +201,7 @@ class Controller(polyinterface.Controller):
             self.update_driver('GV16', float(ob['uvIndex']), force)
             self.update_driver('GV0', float(ob['apparentTemperature']), force)
             self.update_driver('DEWPT', float(ob['dewPoint']), force)
-            self.update_driver('GV17', float(ob['ozone']), force)
+            self.update_driver('GV10', float(ob['ozone']), force)
             self.update_driver('RAINRT', float(ob['precipIntensity']), force, prec=3)
             self.update_driver('GV18', float(ob['precipProbability']) * 100, force)
 
