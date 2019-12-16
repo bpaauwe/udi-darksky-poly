@@ -25,7 +25,7 @@ class DailyNode(polyinterface.Node):
             {'driver': 'BARPRES', 'value': 0, 'uom': 117}, # pressure
             {'driver': 'GV13', 'value': 0, 'uom': 25},     # conditions
             {'driver': 'GV14', 'value': 0, 'uom': 22},     # clouds
-            {'driver': 'GV16', 'value': 0, 'uom': 71},     # UV index
+            {'driver': 'UV', 'value': 0, 'uom': 71},       # UV index
             {'driver': 'GV20', 'value': 0, 'uom': 106},    # mm/day
             ]
 
@@ -60,7 +60,7 @@ class DailyNode(polyinterface.Node):
         self.update_driver('GV2', float(jdata['temperatureMin']))
         self.update_driver('GV13', self.icon_2_int(jdata['icon']))
         self.update_driver('GV14', round(float(jdata['cloudCover']) * 100, 0))
-        self.update_driver('GV16', float(jdata['uvIndex']))
+        self.update_driver('UV', float(jdata['uvIndex']))
         self.update_driver('GV18', float(jdata['precipProbability']) * 100)
         self.update_driver('GV19', int(dow))
 

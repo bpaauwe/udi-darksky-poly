@@ -196,7 +196,7 @@ class Controller(polyinterface.Controller):
             self.update_driver('GV4', float(ob['windSpeed']), force)
             self.update_driver('GV5', float(ob['windGust']), force)
             self.update_driver('WINDDIR', float(ob['windBearing']), force)
-            self.update_driver('GV15', float(ob['visibility']), force)
+            self.update_driver('DISTANC', float(ob['visibility']), force)
             self.update_driver('GV14', float(ob['cloudCover'] * 100), force)
             self.update_driver('GV16', float(ob['uvIndex']), force)
             self.update_driver('GV0', float(ob['apparentTemperature']), force)
@@ -317,6 +317,10 @@ class Controller(polyinterface.Controller):
 
     # For this node server, all of the info is available in the single
     # controller node.
+    #
+    # TODO: add following status
+    #    DISTANC - distance / visibility
+    #    SPEED   - speed / wind speed / gust speed
     drivers = [
             {'driver': 'ST', 'value': 1, 'uom': 2},   # node server status
             {'driver': 'CLITEMP', 'value': 0, 'uom': 4},   # temperature
@@ -329,7 +333,7 @@ class Controller(polyinterface.Controller):
             {'driver': 'GV5', 'value': 0, 'uom': 49},      # wind gust
             {'driver': 'GV13', 'value': 0, 'uom': 25},     # climate conditions
             {'driver': 'GV14', 'value': 0, 'uom': 22},     # cloud conditions
-            {'driver': 'GV15', 'value': 0, 'uom': 116},    # visibility
+            {'driver': 'DISTANC', 'value': 0, 'uom': 116}, # visibility
             {'driver': 'GV18', 'value': 0, 'uom': 22},     # chance
             {'driver': 'RAINRT', 'value': 0, 'uom': 24},   # rain
             {'driver': 'GV16', 'value': 0, 'uom': 71},     # UV index
