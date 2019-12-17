@@ -23,7 +23,7 @@ def get_uom(units):
             'WINDDIR': 76,  # direction
             'DEWPT': 4,     # dew point
             'SOLRAD': 74,   # solar radiation
-            'RAINRT': 107,  # rain rate
+            'RAINRT': 24,   # rain rate
             'GV0': 4,       # max temp
             'GV1': 4,       # min temp
             'GV2': 4,       # ??feels like
