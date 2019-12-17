@@ -14,7 +14,6 @@ import json
 import node_funcs
 from nodes import darksky_daily
 from nodes import uom
-import write_profile
 
 LOGGER = polyinterface.LOGGER
 
@@ -29,12 +28,6 @@ class Controller(polyinterface.Controller):
         self.address = 'weather'
         self.primary = self.address
         self.configured = False
-        #self.location = ''
-        #self.apikey = ''
-        #self.units = 'us'
-        #self.myConfig = {}
-        #self.plant_type = 0.23
-        #self.elevation = 0
 
         self.params = node_funcs.NSParameters([{
             'name': 'APIKey',
@@ -98,18 +91,6 @@ class Controller(polyinterface.Controller):
         self.check_params()
         self.discover()
         LOGGER.info('Node server started')
-        """
-        LOGGER.info('Add node for forecast')
-        for day in range(1,8):
-            address = 'forecast_' + str(day)
-            title = 'Forecast ' + str(day)
-
-            try:
-                node = darksky_daily.DailyNode(self, self.address, address, title)
-                self.addNode(node);
-            except:
-                LOGGER.error('Failed to create forecast node' + title)
-        """
 
         # Do an initial query to get the data filled in as soon as possible
         self.query_conditions(True)
@@ -239,9 +220,6 @@ class Controller(polyinterface.Controller):
                     self.delNode(address)
                 except:
                     LOGGER.debug('Failed to delete node ' + address)
-
-        if num_days == 0:
-            return
 
         for day in range(0, num_days):
             address = 'forecast_' + str(day)
