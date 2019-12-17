@@ -16,7 +16,7 @@
       <st id="DISTANC" editor="DISTANCE" />
       <st id="GV18" editor="PERCENT" />
       <st id="RAINRT" editor="RAINRT" />
-      <st id="GV16" editor="UV" />
+      <st id="UV" editor="UV" />
       <st id="GV10" editor="OZONE" />
     </sts>
     <cmds>
@@ -43,7 +43,7 @@
       <st id="BARPRES" editor="PRESSURE" />
       <st id="GV13" editor="CONDITIONS" />
       <st id="GV14" editor="PERCENT" />
-      <st id="GV16" editor="UV" />
+      <st id="UV" editor="UV" />
       <st id="GV20" editor="ET" />
     </sts>
     <cmds>

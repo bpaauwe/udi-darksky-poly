@@ -179,7 +179,7 @@ class Controller(polyinterface.Controller):
             self.update_driver('WINDDIR', float(ob['windBearing']), force)
             self.update_driver('DISTANC', float(ob['visibility']), force)
             self.update_driver('GV14', float(ob['cloudCover'] * 100), force)
-            self.update_driver('GV16', float(ob['uvIndex']), force)
+            self.update_driver('UV', float(ob['uvIndex']), force)
             self.update_driver('GV0', float(ob['apparentTemperature']), force)
             self.update_driver('DEWPT', float(ob['dewPoint']), force)
             self.update_driver('GV10', float(ob['ozone']), force)
@@ -314,7 +314,7 @@ class Controller(polyinterface.Controller):
             {'driver': 'DISTANC', 'value': 0, 'uom': 116}, # visibility
             {'driver': 'GV18', 'value': 0, 'uom': 22},     # chance
             {'driver': 'RAINRT', 'value': 0, 'uom': 24},   # rain
-            {'driver': 'GV16', 'value': 0, 'uom': 71},     # UV index
+            {'driver': 'UV', 'value': 0, 'uom': 71},       # UV index
             {'driver': 'GV10', 'value': 0, 'uom': 56},     # Ozone
             ]
 
