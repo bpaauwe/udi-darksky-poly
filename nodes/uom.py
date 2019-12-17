@@ -23,7 +23,7 @@ def get_uom(units):
             'WINDDIR': 76,  # direction
             'DEWPT': 4,     # dew point
             'SOLRAD': 74,   # solar radiation
-            'RAINRT': 46,   # rain rate
+            'RAINRT': 107,  # rain rate
             'GV0': 4,       # max temp
             'GV1': 4,       # min temp
             'GV2': 4,       # ??feels like
@@ -39,8 +39,8 @@ def get_uom(units):
             'GV12': 25,     # climate intensity
             'GV13': 25,     # climate conditions
             'GV14': 22,     # cloud conditions
-            'GV15': 38,     # visibility
-            'GV16': 71,     # UV index
+            'DISTANC': 38,  # visibility
+            'UV': 71,       # UV index
             'GV17': 56,     # Air Quality
             'GV18': 22,     # chance of precipitation
             'GV19': 25,     # day of week
@@ -55,6 +55,7 @@ def get_uom(units):
             'WINDDIR': 76,  # direction
             'DEWPT': 4,     # dew point
             'SOLRAD': 74,   # solar radiation
+            'RAINRT': 46,   # rain rate
             'GV0': 4,       # max temp
             'GV1': 4,       # min temp
             'GV2': 4,       # feels like
@@ -70,8 +71,8 @@ def get_uom(units):
             'GV12': 25,     # climate intensity
             'GV13': 25,     # climate conditions
             'GV14': 22,     # cloud conditions
-            'GV15': 116,    # visibility
-            'GV16': 71,     # UV index
+            'DISTANC': 116, # visibility
+            'UV': 71,       # UV index
             'GV17': 56,     # Air Quality
             'GV18': 22,     # chance of precipitation
             'GV19': 25,     # day of week
@@ -86,6 +87,7 @@ def get_uom(units):
             'WINDDIR': 76,  # direction
             'DEWPT': 17,    # dew point
             'SOLRAD': 74,   # solar radiation
+            'RAINRT': 46,   # rain rate
             'GV0': 17,      # max temp
             'GV1': 17,      # min temp
             'GV2': 17,      # feels like
@@ -101,8 +103,8 @@ def get_uom(units):
             'GV12': 25,     # climate intensity
             'GV13': 25,     # climate conditions
             'GV14': 22,     # cloud conditions
-            'GV15': 116,    # visibility
-            'GV16': 71,     # UV index
+            'DISTANC': 116, # visibility
+            'UV': 71,       # UV index
             'GV17': 56,     # Air Quality
             'GV18': 22,     # chance of precipitation
             'GV19': 25,     # day of week
