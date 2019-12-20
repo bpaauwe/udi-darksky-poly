@@ -83,7 +83,7 @@ class Controller(polyinterface.Controller):
             if self.params.isSet('Forecast Days'):
                 self.discover()
         elif valid:
-            LOGGER.debug('-- configuration not changaed, but is valid')
+            LOGGER.debug('-- configuration not changed, but is valid')
 
     def start(self):
         LOGGER.info('Starting node server')
