@@ -62,6 +62,10 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 2.0.0 01/13/2020
+   - Resign the code base to be more module
+   - Improve handling of custom configuration parameters
+   - Add ability to set logging level
 - 1.1.6 10/13/2019
    - Add preciptation rate and chance of preciptiation
 - 1.1.5 09/05/2019
