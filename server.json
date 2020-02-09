@@ -13,8 +13,8 @@
     "credits": [ {
 	"title": "DarkSky: A node server for weather data",
     	"author": "Bob Paauwe",
-    	"version": "2.0.0",
-    	"date": "January 13, 2020",
+    	"version": "2.0.1",
+    	"date": "February 9, 2020",
     	"source": "https://github.com/bpaauwe/udi-darksky-poly",
 	"license": "https://github.com/bpaauwe/udi-darksky-poly/LICENSE"
 	} ]

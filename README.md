@@ -62,6 +62,8 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 2.0.1 02/09/2020
+   - Workaround bug in cloud polyglot
 - 2.0.0 01/13/2020
    - Resign the code base to be more module
    - Improve handling of custom configuration parameters
