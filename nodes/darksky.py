@@ -37,7 +37,7 @@ class Controller(polyinterface.Controller):
             },
             {
             'name': 'Location',
-            'default': '',
+            'default': 'set me',
             'isRequired': True,
             'notice': 'DarkSky location must be set',
             },
