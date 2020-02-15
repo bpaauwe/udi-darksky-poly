@@ -91,7 +91,7 @@ def write_profile(logger, drivers, daily_drivers):
 
     # Daily Forecast Node
     nodedef.write(NODEDEF_TMPL % ('daily', 'dsk'))
-    nodedef.write("    <editors />\n")
+    #nodedef.write("    <editors />\n")
     nodedef.write("    <sts>\n")
     for d in daily_drivers:
         if d['uom'] == 25:
