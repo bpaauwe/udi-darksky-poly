@@ -4,7 +4,7 @@
     <sts>
       <st id="ST" editor="bool" />
       <st id="CLITEMP" editor="TEMPERATURE" />
-      <st id="GV0" editor="TEMPERATURE" />
+      <st id="GV2" editor="TEMPERATURE" />
       <st id="CLIHUM" editor="PERCENT" />
       <st id="DEWPT" editor="TEMPERATURE" />
       <st id="BARPRES" editor="PRESSURE" />
@@ -36,8 +36,8 @@
     <editors />
     <sts>
       <st id="GV19" editor="DAY" />
+      <st id="GV0" editor="TEMPERATURE" />
       <st id="GV1" editor="TEMPERATURE" />
-      <st id="GV2" editor="TEMPERATURE" />
       <st id="GV18" editor="PERCENT" />
       <st id="CLIHUM" editor="PERCENT" />
       <st id="BARPRES" editor="PRESSURE" />

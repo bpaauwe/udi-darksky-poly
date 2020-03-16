@@ -18,8 +18,8 @@ class DailyNode(polyinterface.Node):
     id = 'daily'
     drivers = [
             {'driver': 'GV19', 'value': 0, 'uom': 25},     # day of week
-            {'driver': 'GV1', 'value': 0, 'uom': 4},       # high temp
-            {'driver': 'GV2', 'value': 0, 'uom': 4},       # low temp
+            {'driver': 'GV0', 'value': 0, 'uom': 4},       # high temp
+            {'driver': 'GV1', 'value': 0, 'uom': 4},       # low temp
             {'driver': 'GV18', 'value': 0, 'uom': 22},     # precip chance
             {'driver': 'CLIHUM', 'value': 0, 'uom': 22},   # humidity
             {'driver': 'BARPRES', 'value': 0, 'uom': 117}, # pressure
@@ -56,8 +56,8 @@ class DailyNode(polyinterface.Node):
         LOGGER.info('Day of week = ' + dow)
         self.update_driver('CLIHUM', round(float(jdata['humidity']) * 100, 0))
         self.update_driver('BARPRES', float(jdata['pressure']))
-        self.update_driver('GV1', float(jdata['temperatureMax']))
-        self.update_driver('GV2', float(jdata['temperatureMin']))
+        self.update_driver('GV0', float(jdata['temperatureMax']))
+        self.update_driver('GV1', float(jdata['temperatureMin']))
         self.update_driver('GV13', self.icon_2_int(jdata['icon']))
         self.update_driver('GV14', round(float(jdata['cloudCover']) * 100, 0))
         self.update_driver('UV', float(jdata['uvIndex']))

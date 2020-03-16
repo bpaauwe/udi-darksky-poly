@@ -180,7 +180,7 @@ class Controller(polyinterface.Controller):
             self.update_driver('DISTANC', float(ob['visibility']), force)
             self.update_driver('GV14', float(ob['cloudCover'] * 100), force)
             self.update_driver('UV', float(ob['uvIndex']), force, prec=1)
-            self.update_driver('GV0', float(ob['apparentTemperature']), force)
+            self.update_driver('GV2', float(ob['apparentTemperature']), force)
             self.update_driver('DEWPT', float(ob['dewPoint']), force)
             self.update_driver('GV10', float(ob['ozone']), force)
             self.update_driver('RAINRT', float(ob['precipIntensity']), force, prec=3)
@@ -302,7 +302,7 @@ class Controller(polyinterface.Controller):
     drivers = [
             {'driver': 'ST', 'value': 1, 'uom': 2},   # node server status
             {'driver': 'CLITEMP', 'value': 0, 'uom': 4},   # temperature
-            {'driver': 'GV0', 'value': 0, 'uom': 4},       # apparent temp
+            {'driver': 'GV2', 'value': 0, 'uom': 4},       # apparent temp
             {'driver': 'CLIHUM', 'value': 0, 'uom': 22},   # humidity
             {'driver': 'DEWPT', 'value': 0, 'uom': 4},     # dewpoint
             {'driver': 'BARPRES', 'value': 0, 'uom': 117}, # pressure
