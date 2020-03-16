@@ -198,7 +198,7 @@ class Controller(polyinterface.Controller):
                 address = 'forecast_' + str(day)
                 LOGGER.debug('calling update_forecast for ' + address)
                 try:
-                    self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.params.get('Elevation'), self.params.get('Plant Type'), self.params.get('Units'))
+                    self.nodes[address].update_forecast(jdata['daily']['data'][day], jdata['latitude'], self.params.get('Elevation'), self.params.get('Plant Type'), self.params.get('Units'), force)
                 except:
                     LOGGER.debug('Failed to query forecast data for day ' + day)
         except:
