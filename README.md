@@ -62,6 +62,10 @@ The DarkSky nodeserver keeps track of the version number and when a profile rebu
 
 # Release Notes
 
+- 2.0.2 03/17/2020
+   - Add additional data drivers to forecast data
+   - Re-organize the temperature drivers
+   - Evaptranspiration units based on user preference
 - 2.0.1 02/09/2020
    - Workaround bug in cloud polyglot
 - 2.0.0 01/13/2020
